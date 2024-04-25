@@ -7,6 +7,8 @@ git add .config/nvim .config/htop/ .config/iterm2/ .config/mc/ .config/neofetch/
     .gitconfig .zshrc README.md .yabairc .tmux.conf .doom.d .ideavimrc
 git submodule add https://github.com/DIvkov575/nvim .config/nvim
 
+git lfs track *.tar.gz
+
 
 # brew install
 brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker
@@ -24,7 +26,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # compressed
 tar -czvf stuff.tar.gz cct ~/documents/images ~/documents/miscellaneous ~/documents/stl
-<!-- gcloud storage cp stuff.tar.gz gs://dimas_bucket -->
+
+gcloud storage cp stuff.tar.gz gs://dimas_bucket
 
 tar -xzvf stuff.tar.gz stuff
 tar -xzvf stl.tar.gz stl
