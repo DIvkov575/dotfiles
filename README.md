@@ -8,15 +8,17 @@ git add .config/nvim .config/htop/ .config/iterm2/ .config/mc/ .config/neofetch/
 git submodule add https://github.com/DIvkov575/nvim .config/nvim
 
 git lfs track *.tar.gz
+git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz 
 
 
 # brew install
-brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker
+brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git
 brew install --cask spotify istat-menus postman karabiner-elements yubico-yubikey-manager arc zoom 
-brew install ubersicht
+<!-- brew install ubersicht -->
 
 
 # curl
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 
