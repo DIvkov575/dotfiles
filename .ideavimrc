@@ -1,0 +1,40 @@
+let mapleader=" "
+
+sethandler <C-A> a:vim
+sethandler <C-B> a:vim
+sethandler <C-D> a:vim
+sethandler <C-E> a:vim
+sethandler <C-F> a:vim
+sethandler <C-H> a:vim
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-R> a:ide
+sethandler <C-S> a:vim
+sethandler <C-T> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:vim
+
+set easymotion
+set which-key
+set sneak
+set ideajoin
+set quickscope
+set multicursor
+
+set timeoutlen=5000
+
+map <leader>fs <Action>(FileStructurePopup)
+map <leader>rr <Action>(Run)
+map <leader>rd <Action>(Debug)
+map <leader>rf <Action>(ReformatCode)
+
+map <leader>s <Plug>(easymotion-f)
+map <leader>S <Plug>(easymotion-F)
+
+inoremap jk <Esc>
+
