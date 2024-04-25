@@ -6,7 +6,6 @@ defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.
 git add .config/nvim .config/htop/ .config/iterm2/ .config/starship.toml \
     .gitconfig .zshrc README.md .yabairc .tmux.conf .ideavimrc
 git submodule add https://github.com/DIvkov575/nvim .config/nvim
-
 git lfs track *.tar.gz
 git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz 
 
