@@ -3,8 +3,8 @@ defaults write com.apple.dock autohide-delay -float 0; defaults write com.apple.
 
 
 # git tracking
-git add .config/nvim .config/htop/ .config/iterm2/ .config/mc/ .config/neofetch/ .config/starship.toml \
-    .gitconfig .zshrc README.md .yabairc .tmux.conf .doom.d .ideavimrc
+git add .config/nvim .config/htop/ .config/iterm2/ .config/starship.toml \
+    .gitconfig .zshrc README.md .yabairc .tmux.conf .ideavimrc
 git submodule add https://github.com/DIvkov575/nvim .config/nvim
 
 git lfs track *.tar.gz
@@ -12,7 +12,7 @@ git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz
 
 
 # brew install
-brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git
+brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git tmux koekeishiya/formulae/yabai
 brew install --cask spotify istat-menus postman karabiner-elements yubico-yubikey-manager arc zoom 
 <!-- brew install ubersicht -->
 
