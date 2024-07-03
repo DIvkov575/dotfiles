@@ -11,8 +11,9 @@ git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz
 
 
 # brew install
-brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git tmux koekeishiya/formulae/yabai htop
-brew install --cask spotify istat-menus postman karabiner-elements yubico-yubikey-manager arc zoom 
+brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git koekeishiya/formulae/yabai htop qemu folx skhd
+brew install spotify  postman karabiner-elements yubico-yubikey-manager arc zoom 
+brew install utm imhex 
 <!-- brew install ubersicht -->
 
 
@@ -20,17 +21,3 @@ brew install --cask spotify istat-menus postman karabiner-elements yubico-yubike
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-
-# total install 
-- nvm -> install node
-
-
-# compressed
-tar -czvf stuff.tar.gz cct ~/documents/images ~/documents/miscellaneous ~/documents/stl
-
-gcloud storage cp stuff.tar.gz gs://dimas_bucket
-
-tar -xzvf stuff.tar.gz stuff
-tar -xzvf stl.tar.gz stl
-tar -xzvf images.tar.gz images
-tar -xzvf miscellaneous.tar.gz miscellaneous
