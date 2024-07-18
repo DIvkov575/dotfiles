@@ -11,13 +11,17 @@ git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz
 
 
 # brew install
-brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git koekeishiya/formulae/yabai htop qemu folx skhd
-brew install spotify  postman karabiner-elements yubico-yubikey-manager arc zoom 
-brew install utm imhex 
-<!-- brew install ubersicht -->
+brew install zellij yabai nvim python3 nvm  starship zsh-autosuggestions docker git koekeishiya/formulae/yabai htop folx skhd spotify karabiner-elements arc zoom google-cloud-sdk telegram
+<!-- brew install ubersicht qemu utm imhex  postman  yubico-yubikey-manager -->
 
 
 # curl
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+
+# configuration 
+---
+# Arc
+Extensions: keepa, lastpass, block site, super video speed controller, ublock
+# Settings
