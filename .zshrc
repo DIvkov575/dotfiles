@@ -11,6 +11,7 @@ export homebrew="/opt/homebrew/"
 alias g='git '
 alias ga='git add '
 alias gA='git add -A'
+alias gb='git branch '
 alias gst='git status '
 alias gc='git commit '
 alias gp='git push '
