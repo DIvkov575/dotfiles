@@ -9,8 +9,7 @@ export NVM_DIR="$HOME/.nvm"
 export homebrew="/opt/homebrew/"
 
 alias g='git '
-alias ga='git add '
-alias gA='git add -A'
+alias ga='git add -A'
 alias gb='git branch '
 alias gs='git status '
 alias gc='git commit '
