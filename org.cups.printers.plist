@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>printer-name</key>
+		<string>bmhs_c248_bw1</string>
+		<key>printer-info</key>
+		<string>bmhs c248 bw1</string>
+		<key>printer-is-accepting-jobs</key>
+		<true/>
+		<key>printer-location</key>
+		<string>BMHS C248</string>
+		<key>printer-make-and-model</key>
+		<string>HP Universal Printing PCL 6-AirPrint</string>
+		<key>printer-state</key>
+		<integer>3</integer>
+		<key>printer-state-reasons</key>
+		<array>
+			<string>offline-report</string>
+		</array>
+		<key>printer-type</key>
+		<integer>12500</integer>
+		<key>device-uri</key>
+		<string>dnssd://bmhs%20c248%20bw1._ipp._tcp.dnssd.presto./?uuid=bmhs%20c248%20bw1</string>
+	</dict>
+	<dict>
+		<key>printer-name</key>
+		<string>Brother_HL_L2370DW_series</string>
+		<key>printer-info</key>
+		<string>Brother HL-L2370DW series</string>
+		<key>printer-is-accepting-jobs</key>
+		<true/>
+		<key>printer-location</key>
+		<string></string>
+		<key>printer-make-and-model</key>
+		<string>Brother HL-L2370DW series-AirPrint</string>
+		<key>printer-state</key>
+		<integer>3</integer>
+		<key>printer-state-reasons</key>
+		<array>
+		</array>
+		<key>printer-type</key>
+		<integer>36948</integer>
+		<key>device-uri</key>
+		<string>dnssd://Brother%20HL-L2370DW%20series._ipp._tcp.local./?uuid=e3248000-80ce-11db-8000-b42200bfea7a</string>
+	</dict>
+</array>
+</plist>
