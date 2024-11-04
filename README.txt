@@ -13,7 +13,7 @@ git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz
 # brew install
 brew install  koekeishiya/formulae/yabai skhd 
 brew install git nvim zsh-autosuggestions docker spotify arc zoom google-cloud-sdk macs-fan-control karabiner-elements
-brew install zellij python3 nvm  starship htop folx telegram ubico-yubikey-manager
+brew install zellij python3 nvm  starship htop folx telegram ubico-yubikey-manager jupyterlab
 
 
 # curl
