@@ -26,3 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Arc
 Extensions: keepa, lastpass, block site, super video speed controller, ublock
 # Settings
+
+# Settings
+Keyboard shortcuts
+keyboard/services/text - search manpage ... -- stops cmd-shift-a from working in jetbrains
