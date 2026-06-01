@@ -10,7 +10,8 @@ git add cct.tar.gz images.tar.gz stl.tar.gz miscellaneous.tar.gz
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-brew install  koekeishiya/formulae/yabai skhd 
+brew install  koekeishiya/formulae/yabai
+brew install koekeishiya/formulae/skhd
 brew install git nvim zsh-autosuggestions docker spotify arc zoom google-cloud-sdk macs-fan-control karabiner-elements nvm telegram ubico-yubikey-manager
 
 yabai --start-service
