@@ -18,6 +18,8 @@ ln -sf "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
 ln -sf "$DOTFILES/nvim" ~/.config/nvim
 mkdir -p ~/.claude
 ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
+ln -sfn "$DOTFILES/claude/agents" ~/.claude/agents
+ln -sfn "$DOTFILES/claude/commands" ~/.claude/commands
 mkdir -p ~/.config/karabiner ~/.config/skhd ~/.config/yabai
 ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 ln -sf "$DOTFILES/skhd/skhdrc" ~/.config/skhd/skhdrc
