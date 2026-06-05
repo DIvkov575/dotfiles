@@ -35,9 +35,9 @@ fi
 
 echo "==> Installing language runtimes (via mise)"
 eval "$(mise activate bash)"
-mise install python@3.11
-mise install node@18
-mise use --global python@3.11 node@18
+mise install python@latest
+mise install node@latest
+mise use --global python@latest node@latest
 
 echo "==> Installing Claude Code"
 npm install -g @anthropic-ai/claude-code
