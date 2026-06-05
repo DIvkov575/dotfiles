@@ -1,0 +1,12 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "model": "opus",
+  "effortLevel": "low",
+  "theme": "dark",
+  "editorMode": "normal",
+  "skipDangerousModePermissionPrompt": true
+}
