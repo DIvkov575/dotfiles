@@ -1,7 +1,9 @@
 tap "homebrew/bundle"
+tap "koekeishiya/formulae"
 
 # Core tools
 brew "git"
+brew "git-lfs"
 brew "gh"
 brew "neovim"
 brew "tmux"
@@ -10,18 +12,19 @@ brew "fd"
 brew "starship"
 brew "mise"
 brew "tree-sitter"
+brew "docker"
 
 # Shell
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
-# Languages
+# Language tooling (runtimes managed by rustup/mise/xcode)
 brew "rust-analyzer"
-brew "python@3.11"
+brew "cmake"
 
 # Window management
-brew "yabai"
-brew "skhd"
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
 
 # Casks
 cask "ghostty"

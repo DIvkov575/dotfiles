@@ -8,5 +8,20 @@
   "effortLevel": "low",
   "theme": "dark",
   "editorMode": "normal",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "prefersReducedMotion": true,
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "remember@claude-plugins-official": true,
+    "git-ship@skills": true
+  },
+  "extraKnownMarketplaces": {
+    "skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/DIvkov575/skills.git"
+      }
+    }
+  }
 }

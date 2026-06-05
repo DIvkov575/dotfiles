@@ -24,6 +24,24 @@ ln -sf "$DOTFILES/skhd/skhdrc" ~/.config/skhd/skhdrc
 ln -sf "$DOTFILES/yabai/yabairc" ~/.config/yabai/yabairc
 chmod +x ~/.config/yabai/yabairc
 
+echo "==> Installing Xcode Command Line Tools (C/C++)"
+xcode-select --install 2>/dev/null || true
+
+echo "==> Installing Rust (via rustup)"
+if ! command -v rustup &>/dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  source "$HOME/.cargo/env"
+fi
+
+echo "==> Installing language runtimes (via mise)"
+eval "$(mise activate bash)"
+mise install python@3.11
+mise install node@18
+mise use --global python@3.11 node@18
+
+echo "==> Installing Claude Code"
+npm install -g @anthropic-ai/claude-code
+
 echo "==> Applying macOS defaults"
 bash "$DOTFILES/macos/defaults.sh"
 
