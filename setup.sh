@@ -12,6 +12,15 @@ fi
 echo "==> Installing packages"
 brew bundle --file="$DOTFILES/Brewfile"
 
+echo "==> Configuring git"
+git config --global user.name "Dmitriy Ivkov"
+git config --global user.email "divkov@amazon.com"
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ecdsa.pub
+git config --global commit.gpgsign true
+echo "divkov@amazon.com $(cat ~/.ssh/id_ecdsa.pub)" > ~/.ssh/allowed_signers
+git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+
 echo "==> Linking dotfiles"
 ln -sf "$DOTFILES/zsh/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
