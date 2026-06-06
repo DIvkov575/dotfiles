@@ -26,8 +26,14 @@ brew "cmake"
 brew "koekeishiya/formulae/yabai"
 brew "koekeishiya/formulae/skhd"
 
+# AI
+brew "ollama"
+
 # Casks
+cask "firefox"
 cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"
 cask "karabiner-elements"
+cask "obsidian"
+cask "slack"
 cask "spotify"

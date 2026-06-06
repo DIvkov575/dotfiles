@@ -26,6 +26,12 @@ ln -sf "$DOTFILES/skhd/skhdrc" ~/.config/skhd/skhdrc
 ln -sf "$DOTFILES/yabai/yabairc" ~/.config/yabai/yabairc
 chmod +x ~/.config/yabai/yabairc
 
+echo "==> Linking Firefox user.js"
+FF_PROFILE=$(find ~/Library/Application\ Support/Firefox/Profiles -maxdepth 1 -name "*.default-release" 2>/dev/null | head -1)
+if [ -n "$FF_PROFILE" ]; then
+  ln -sf "$DOTFILES/firefox/user.js" "$FF_PROFILE/user.js"
+fi
+
 echo "==> Installing Xcode Command Line Tools (C/C++)"
 xcode-select --install 2>/dev/null || true
 
