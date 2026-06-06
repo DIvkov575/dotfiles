@@ -8,7 +8,6 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
-export PATH="$HOME/.toolbox/bin:$PATH"
 
 # Git
 alias g='git '
