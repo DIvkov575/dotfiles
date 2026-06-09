@@ -1,0 +1,9 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+term = xterm-256color
+
+unfocused-split-opacity = 0.85
+bell-features = system,audio,attention,title,border
+desktop-notifications = true
+notify-on-command-finish = always
+notify-on-command-finish-action = bell,notify

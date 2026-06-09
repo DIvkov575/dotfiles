@@ -31,6 +31,8 @@ mkdir -p ~/.claude
 ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 ln -sfn "$DOTFILES/claude/agents" ~/.claude/agents
 ln -sfn "$DOTFILES/claude/commands" ~/.claude/commands
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+ln -sf "$DOTFILES/ghostty/config" ~/Library/Application\ Support/com.mitchellh.ghostty/config.ghostty
 mkdir -p ~/.config/karabiner ~/.config/skhd ~/.config/yabai
 ln -sf "$DOTFILES/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 ln -sf "$DOTFILES/skhd/skhdrc" ~/.config/skhd/skhdrc
