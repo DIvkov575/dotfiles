@@ -149,73 +149,6 @@
     "opus",
     "sonnet"
   ],
-  "statusLine": {
-    "type": "command",
-    "command": "bash /Users/divkov/.claude/statusline-command.sh"
-  },
-  "enabledPlugins": {
-    "AmazonBuilderCoreAIAgents-pipeline-assistant@aim": true,
-    "AmazonBuilderCoreAIAgents-core@aim": true,
-    "superpowers@claude-plugins-official": true,
-    "code-review@claude-plugins-official": false,
-    "feature-dev@claude-plugins-official": true,
-    "remember@claude-plugins-official": true,
-    "coderabbit@claude-plugins-official": false,
-    "github@claude-plugins-official": false,
-    "AtlasAICapabilities-all@aim": true,
-    "SlackDigestAICapabilities-all@aim": true,
-    "MeshClawAICapabilities-all@aim": true,
-    "git-ship@skills": true,
-    "converge@skills": true,
-    "handoff@skills": true,
-    "distill@skills": true,
-    "improve-prompt@skills": true,
-    "compress@skills": true
-  },
-  "extraKnownMarketplaces": {
-    "aim": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/divkov/.aim/cc-plugins"
-      }
-    },
-    "skills": {
-      "source": {
-        "source": "git",
-        "url": "https://github.com/DIvkov575/skills.git"
-      }
-    }
-  },
-  "effortLevel": "xhigh",
-  "advisorModel": "sonnet",
-  "tui": "default",
-  "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true,
-  "theme": "dark",
-  "editorMode": "vim",
-  "preferredNotifChannel": "ghostty",
-  "mcpServers": {
-    "mcpu": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "--package=@mcpu/cli",
-        "mcpu-mcp"
-      ]
-    },
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp@latest"
-      ]
-    }
-  },
-  "chrome": true,
-  "teammate_mode": "tmux",
-  "_meshclaw_managed": [
-    "permissions.deny"
-  ],
   "hooks": {
     "SessionStart": [
       {
@@ -290,5 +223,80 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/divkov/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "AmazonBuilderCoreAIAgents-pipeline-assistant@aim": true,
+    "AmazonBuilderCoreAIAgents-core@aim": true,
+    "superpowers@claude-plugins-official": true,
+    "code-review@claude-plugins-official": false,
+    "feature-dev@claude-plugins-official": true,
+    "remember@claude-plugins-official": true,
+    "coderabbit@claude-plugins-official": false,
+    "github@claude-plugins-official": false,
+    "AtlasAICapabilities-all@aim": true,
+    "SlackDigestAICapabilities-all@aim": true,
+    "MeshClawAICapabilities-all@aim": true,
+    "git-ship@skills": true,
+    "converge@skills": true,
+    "distill@skills": true,
+    "improve-prompt@skills": true,
+    "compress@skills": true,
+    "frontend-design@claude-plugins-official": true,
+    "namegen@skills": true,
+    "agents-md@skills": true
+  },
+  "extraKnownMarketplaces": {
+    "aim": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/divkov/.aim/cc-plugins"
+      }
+    },
+    "skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/DIvkov575/dima-skills.git"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "advisorModel": "sonnet",
+  "tui": "default",
+  "prefersReducedMotion": true,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "editorMode": "vim",
+  "preferredNotifChannel": "ghostty",
+  "mcpServers": {
+    "builder-mcp": {
+      "command": "builder-mcp",
+      "args": [
+        "--include-tool-tags",
+        "additional,default"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    },
+    "contextplus": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "contextplus"
+      ]
+    }
+  },
+  "chrome": true,
+  "teammate_mode": "tmux",
+  "_meshclaw_managed": [
+    "permissions.deny"
+  ]
 }
