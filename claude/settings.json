@@ -285,13 +285,6 @@
         "-y",
         "@upstash/context7-mcp@latest"
       ]
-    },
-    "contextplus": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "contextplus"
-      ]
     }
   },
   "chrome": true,
