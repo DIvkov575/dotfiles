@@ -6,9 +6,6 @@ input=$(cat)
 # --- Terminal width ---
 term_width=$(tput cols 2>/dev/null || echo 120)
 
-# --- Model ---
-model=$(echo "$input" | jq -r '.model.display_name // "unknown model"')
-
 # --- Current directory (basename only for brevity) ---
 cwd=$(echo "$input" | jq -r '.cwd // ""')
 dir=$(basename "$cwd")
@@ -102,15 +99,14 @@ fi
 
 # --- Assemble segments ---
 segments=()
-segments+=("$model")
 segments+=("$dir")
 segments+=("$ctx_str")
+[ -n "$cost_str" ] && segments+=("$cost_str")
+[ -n "$rate_str" ] && segments+=("$rate_str")
 [ -n "$vim_mode" ] && segments+=("$vim_mode")
 [ -n "$effort" ] && segments+=("⚡$effort")
 [ -n "$git_info" ] && segments+=("$git_info")
 [ -n "$midway_str" ] && segments+=("$midway_str")
-[ -n "$cost_str" ] && segments+=("$cost_str")
-[ -n "$rate_str" ] && segments+=("$rate_str")
 
 # --- Join with separator ---
 sep=" | "
