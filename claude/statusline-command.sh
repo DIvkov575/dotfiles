@@ -81,6 +81,13 @@ if [ -f "$cookie_file" ]; then
   fi
 fi
 
+# --- Session cost (USD, client-side estimate) ---
+cost_str=""
+cost_usd=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
+if [ -n "$cost_usd" ]; then
+  cost_str=$(printf '$%.2f' "$cost_usd")
+fi
+
 # --- Rate limits ---
 rate_str=""
 five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
@@ -102,6 +109,7 @@ segments+=("$ctx_str")
 [ -n "$effort" ] && segments+=("⚡$effort")
 [ -n "$git_info" ] && segments+=("$git_info")
 [ -n "$midway_str" ] && segments+=("$midway_str")
+[ -n "$cost_str" ] && segments+=("$cost_str")
 [ -n "$rate_str" ] && segments+=("$rate_str")
 
 # --- Join with separator ---
