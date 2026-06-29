@@ -27,10 +27,14 @@ echo "==> Linking dotfiles"
 ln -sf "$DOTFILES/zsh/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
 ln -sf "$DOTFILES/nvim" ~/.config/nvim
-mkdir -p ~/.claude
+mkdir -p ~/.claude ~/.claude/commands
 ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
 ln -sfn "$DOTFILES/claude/agents" ~/.claude/agents
-ln -sfn "$DOTFILES/claude/commands" ~/.claude/commands
+# Per-file (not whole-dir) so the memory tool can install /memorize + /recall
+# into the same real dir without writing inside the dotfiles repo.
+for c in "$DOTFILES"/claude/commands/*.md; do
+  [ -e "$c" ] && ln -sf "$c" ~/.claude/commands/"$(basename "$c")"
+done
 mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
 ln -sf "$DOTFILES/ghostty/config" ~/Library/Application\ Support/com.mitchellh.ghostty/config.ghostty
 mkdir -p ~/.config/karabiner ~/.config/skhd ~/.config/yabai
@@ -62,6 +66,27 @@ mise use --global python@latest node@latest
 
 echo "==> Installing Claude Code"
 npm install -g @anthropic-ai/claude-code
+
+echo "==> Installing persistent memory system (tool + private memories)"
+# Public tooling and private memory content live in separate repos under
+# ~/workplace. The tool resolves the memories via MEM_HOME (default below).
+mkdir -p ~/workplace
+MEM_HOME="$HOME/workplace/mymemories"
+TOOL_DIR="$HOME/workplace/mymemories-tool"
+if [ ! -d "$MEM_HOME/.git" ]; then
+  git clone git@github.com:DIvkov575/mymemories.git "$MEM_HOME" \
+    || echo "  (skip: could not clone private mymemories — clone it manually, then re-run this block)"
+fi
+if [ ! -d "$TOOL_DIR/.git" ]; then
+  git clone https://github.com/DIvkov575/mymemories-tool.git "$TOOL_DIR"
+fi
+if [ -d "$TOOL_DIR/.git" ]; then
+  ( cd "$TOOL_DIR"
+    ./install.sh         # symlink partitions into ~/.claude/projects
+    ./install-hook.sh    # register SessionStart hook + install /memorize, /recall
+    ./setup.sh           # create .venv + install fastembed
+    [ -d "$MEM_HOME" ] && python3 embed.py update )   # build embedding index
+fi
 
 echo "==> Applying macOS defaults"
 bash "$DOTFILES/macos/defaults.sh"
