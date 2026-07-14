@@ -30,9 +30,6 @@ fi
 # --- Vim mode ---
 vim_mode=$(echo "$input" | jq -r '.vim.mode // empty')
 
-# --- Effort level ---
-effort=$(echo "$input" | jq -r '.effort.level // empty')
-
 # --- Git branch or PR ---
 git_info=""
 pr_num=$(echo "$input" | jq -r '.pr.number // empty')
@@ -85,12 +82,22 @@ if [ -n "$cost_usd" ]; then
   cost_str=$(printf '$%.2f' "$cost_usd")
 fi
 
-# --- Rate limits ---
+# --- Rate limits (5h window as a visual glide gauge) ---
 rate_str=""
 five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
 week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 if [ -n "$five_pct" ]; then
-  rate_str=$(printf "5h:%.0f%%" "$five_pct")
+  five_int=$(printf "%.0f" "$five_pct")
+
+  # Visual glide bar (10 chars wide)
+  five_filled=$((five_int / 10))
+  [ "$five_filled" -gt 10 ] && five_filled=10
+  five_empty=$((10 - five_filled))
+  five_bar=""
+  for ((i=0; i<five_filled; i++)); do five_bar+="█"; done
+  for ((i=0; i<five_empty; i++)); do five_bar+="░"; done
+
+  rate_str="5h ${five_bar} ${five_int}%"
 fi
 if [ -n "$week_pct" ]; then
   week_part=$(printf "7d:%.0f%%" "$week_pct")
@@ -104,7 +111,6 @@ segments+=("$ctx_str")
 [ -n "$cost_str" ] && segments+=("$cost_str")
 [ -n "$rate_str" ] && segments+=("$rate_str")
 [ -n "$vim_mode" ] && segments+=("$vim_mode")
-[ -n "$effort" ] && segments+=("⚡$effort")
 [ -n "$git_info" ] && segments+=("$git_info")
 [ -n "$midway_str" ] && segments+=("$midway_str")
 

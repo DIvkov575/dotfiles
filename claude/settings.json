@@ -20,15 +20,6 @@
       "WebFetch(domain:www.anthropic.com)"
     ],
     "deny": [
-      "mcp__contextplus__upsert_memory_node",
-      "mcp__contextplus__create_relation",
-      "mcp__contextplus__search_memory_graph",
-      "mcp__contextplus__prune_stale_links",
-      "mcp__contextplus__add_interlinked_context",
-      "mcp__contextplus__retrieve_with_traversal",
-      "mcp__contextplus__semantic_code_search",
-      "mcp__contextplus__semantic_identifier_search",
-      "mcp__contextplus__semantic_navigate",
       "Bash(aws configure get*)",
       "Bash(aws configure export-credentials*)",
       "Bash(aws sts get-session-token*)",
@@ -50,7 +41,6 @@
       "Bash(aws s3 cp * s3://*)",
       "Bash(aws s3 mv * s3://*)",
       "Bash(aws s3 sync * s3://*)",
-      "Bash(*meshclaw*token*)",
       "Bash(rm -rf /)",
       "Bash(rm -rf ~*)",
       "Bash(rm -rf /*)",
@@ -133,7 +123,6 @@
       "Read(~/.git-credentials)",
       "Read(~/.npmrc)",
       "Read(~/.pypirc)",
-      "Read(~/.meshclaw/.env)",
       "Grep(~/.ada/*)",
       "Grep(*/.ada/*)",
       "Grep(~/.midway/*)",
@@ -153,20 +142,37 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "global.anthropic.claude-opus-4-8[1m]",
+  "model": "global.anthropic.claude-fable-5",
+  "fallbackModel": [
+    "global.anthropic.claude-opus-4-6-v1[1m]"
+  ],
   "availableModels": [
+    "claude-opus-4-6[1m]",
     "claude-opus-4-6",
+    "claude-opus-4-7[1m]",
     "claude-opus-4-7",
+    "claude-opus-4-8[1m]",
     "claude-opus-4-8",
     "claude-sonnet-4-6",
+    "claude-sonnet-4-6[1m]",
+    "claude-sonnet-5",
+    "claude-fable-5",
+    "claude-fable-5[1m]",
     "claude-haiku-4-5"
   ],
   "enforceAvailableModels": true,
   "modelOverrides": {
-    "claude-opus-4-6": "global.anthropic.claude-opus-4-6-v1[1m]",
-    "claude-opus-4-7": "global.anthropic.claude-opus-4-7[1m]",
-    "claude-opus-4-8": "global.anthropic.claude-opus-4-8[1m]",
-    "claude-sonnet-4-6": "global.anthropic.claude-sonnet-4-6[1m]",
+    "claude-opus-4-6[1m]": "global.anthropic.claude-opus-4-6-v1[1m]",
+    "claude-opus-4-6": "global.anthropic.claude-opus-4-6-v1",
+    "claude-opus-4-7[1m]": "global.anthropic.claude-opus-4-7[1m]",
+    "claude-opus-4-7": "global.anthropic.claude-opus-4-7",
+    "claude-opus-4-8[1m]": "global.anthropic.claude-opus-4-8[1m]",
+    "claude-opus-4-8": "global.anthropic.claude-opus-4-8",
+    "claude-sonnet-4-6": "global.anthropic.claude-sonnet-4-6",
+    "claude-sonnet-4-6[1m]": "global.anthropic.claude-sonnet-4-6[1m]",
+    "claude-sonnet-5": "global.anthropic.claude-sonnet-5",
+    "claude-fable-5": "global.anthropic.claude-fable-5",
+    "claude-fable-5[1m]": "global.anthropic.claude-fable-5[1m]",
     "claude-haiku-4-5": "global.anthropic.claude-haiku-4-5-20251001-v1:0"
   },
   "hooks": {
@@ -254,24 +260,18 @@
     ],
     "SessionStart": [
       {
-        "matcher": "startup",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/divkov/workplace/mymemories-tool/hooks/session-start.sh"
-          }
-        ]
-      },
-      {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "export COZEMPIC_NO_AUTO_INIT=1; HOOK_DATA=$(cat); SESSION_ID=$(echo \"$HOOK_DATA\" | PYTHONIOENCODING=utf-8 python3 -c \"import sys,json,re; s=json.load(sys.stdin).get('session_id','').lower(); print(re.sub(r'[^a-z0-9_-]','_',s))\" 2>/dev/null); TRANSCRIPT=$(echo \"$HOOK_DATA\" | PYTHONIOENCODING=utf-8 python3 -c \"import sys,json; print(json.load(sys.stdin).get('transcript_path',''))\" 2>/dev/null); { cozempic digest inject ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic digest inject ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; } || true; [ -n \"$SESSION_ID\" ] && { STATUS_FILE=\"/tmp/cozempic_reload_${SESSION_ID:0:12}.status\"; if [ -f \"$STATUS_FILE\" ]; then echo \"Cozempic: previous reload may have failed \u2014 $(head -n 3 $STATUS_FILE 2>/dev/null | tail -n 1)\"; rm -f \"$STATUS_FILE\"; fi; }; [ -n \"$SESSION_ID\" ] && (export COZEMPIC_NO_GLOBAL_INIT=1; if command -v flock >/dev/null 2>&1; then flock -n 9 || exit 0; fi; SENTINEL_FILE=\"/tmp/cozempic_reload_${SESSION_ID:0:12}.in-flight\"; if [ -f \"$SENTINEL_FILE\" ] && [ $(( $(date +%s) - $(stat -f %m \"$SENTINEL_FILE\" 2>/dev/null || stat -c %Y \"$SENTINEL_FILE\" 2>/dev/null || echo 0) )) -lt 120 ]; then echo \"Cozempic: reload in flight, skipping guard spawn\"; exit 0; fi; if [ -z \"$COZEMPIC_NO_AUTO_UPDATE\" ] && [ -z \"$COZEMPIC_PIN\" ]; then PRE=$(cozempic --version 2>/dev/null | awk '/^cozempic /{print $2; exit}'); { uv pip install --upgrade cozempic --quiet 2>/dev/null || pip install --upgrade cozempic --quiet --disable-pip-version-check 2>/dev/null || python3 -m pip install --upgrade cozempic --quiet --disable-pip-version-check 2>/dev/null; } && POST=$(cozempic --version 2>/dev/null | awk '/^cozempic /{print $2; exit}') && [ -n \"$POST\" ] && [ \"$PRE\" != \"$POST\" ] && { cozempic guard --reload-self ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic guard --reload-self ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; }; fi; GUARD_PID_FILE=\"/tmp/cozempic_guard_${SESSION_ID:0:12}.pid\"; GUARD_STARTUP_LOCK=\"/tmp/cozempic_guard_${SESSION_ID:0:12}.startup-lock\"; if [ -f \"$GUARD_PID_FILE\" ] && kill -0 \"$(head -n 1 \"$GUARD_PID_FILE\" 2>/dev/null)\" 2>/dev/null; then :; elif command -v flock >/dev/null 2>&1; then ( flock -n 8 || exit 0; { cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; } || true; ) 8>\"$GUARD_STARTUP_LOCK\"; else { cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; } || true; fi; ) 9>\"/tmp/cozempic_hook_${SESSION_ID:0:12}.lock\" >/dev/null 2>&1 & echo 'Cozempic: guard active' # cozempic-hook-schema=v13"
+            "command": "export COZEMPIC_NO_AUTO_INIT=1; HOOK_DATA=$(cat); SESSION_ID=$(echo \"$HOOK_DATA\" | PYTHONIOENCODING=utf-8 python3 -c \"import sys,json,re; s=json.load(sys.stdin).get('session_id','').lower(); print(re.sub(r'[^a-z0-9_-]','_',s))\" 2>/dev/null); TRANSCRIPT=$(echo \"$HOOK_DATA\" | PYTHONIOENCODING=utf-8 python3 -c \"import sys,json; print(json.load(sys.stdin).get('transcript_path',''))\" 2>/dev/null); { cozempic digest inject ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic digest inject ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; } || true; [ -n \"$SESSION_ID\" ] && { STATUS_FILE=\"/tmp/cozempic_reload_${SESSION_ID:0:12}.status\"; if [ -f \"$STATUS_FILE\" ]; then echo \"Cozempic: previous reload may have failed — $(head -n 3 $STATUS_FILE 2>/dev/null | tail -n 1)\"; rm -f \"$STATUS_FILE\"; fi; }; [ -n \"$SESSION_ID\" ] && (export COZEMPIC_NO_GLOBAL_INIT=1; if command -v flock >/dev/null 2>&1; then flock -n 9 || exit 0; fi; SENTINEL_FILE=\"/tmp/cozempic_reload_${SESSION_ID:0:12}.in-flight\"; if [ -f \"$SENTINEL_FILE\" ] && [ $(( $(date +%s) - $(stat -f %m \"$SENTINEL_FILE\" 2>/dev/null || stat -c %Y \"$SENTINEL_FILE\" 2>/dev/null || echo 0) )) -lt 120 ]; then echo \"Cozempic: reload in flight, skipping guard spawn\"; exit 0; fi; if [ -z \"$COZEMPIC_NO_AUTO_UPDATE\" ] && [ -z \"$COZEMPIC_PIN\" ]; then PRE=$(cozempic --version 2>/dev/null | awk '/^cozempic /{print $2; exit}'); { uv pip install --upgrade cozempic --quiet 2>/dev/null || pip install --upgrade cozempic --quiet --disable-pip-version-check 2>/dev/null || python3 -m pip install --upgrade cozempic --quiet --disable-pip-version-check 2>/dev/null; } && POST=$(cozempic --version 2>/dev/null | awk '/^cozempic /{print $2; exit}') && [ -n \"$POST\" ] && [ \"$PRE\" != \"$POST\" ] && { cozempic guard --reload-self ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic guard --reload-self ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; }; fi; GUARD_PID_FILE=\"/tmp/cozempic_guard_${SESSION_ID:0:12}.pid\"; GUARD_STARTUP_LOCK=\"/tmp/cozempic_guard_${SESSION_ID:0:12}.startup-lock\"; if [ -f \"$GUARD_PID_FILE\" ] && kill -0 \"$(head -n 1 \"$GUARD_PID_FILE\" 2>/dev/null)\" 2>/dev/null; then :; elif command -v flock >/dev/null 2>&1; then ( flock -n 8 || exit 0; { cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; } || true; ) 8>\"$GUARD_STARTUP_LOCK\"; else { cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null || python3 -m cozempic guard --daemon ${TRANSCRIPT:+--session \"$TRANSCRIPT\"} 2>/dev/null; } || true; fi; ) 9>\"/tmp/cozempic_hook_${SESSION_ID:0:12}.lock\" >/dev/null 2>&1 & echo 'Cozempic: guard active' # cozempic-hook-schema=v13"
           }
         ]
       }
     ]
+  },
+  "worktree": {
+    "baseRef": "fresh"
   },
   "statusLine": {
     "type": "command",
@@ -288,16 +288,22 @@
     "github@claude-plugins-official": false,
     "AtlasAICapabilities-all@aim": true,
     "SlackDigestAICapabilities-all@aim": true,
-    "MeshClawAICapabilities-all@aim": true,
     "git-ship@skills": true,
-    "converge@skills": true,
     "distill@skills": true,
     "improve-prompt@skills": true,
     "compress@skills": true,
     "frontend-design@claude-plugins-official": true,
     "namegen@skills": true,
+    "atomize@skills": true,
+    "agent-legible@skills": true,
     "agents-md@skills": true,
-    "context7@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "hld@skills": true,
+    "echo@skills": true,
+    "hld2@skills": true,
+    "swear-filter@skills": true,
+    "mymemories@mymemories": true,
+    "dreams@dreams": true
   },
   "extraKnownMarketplaces": {
     "aim": {
@@ -308,12 +314,24 @@
     },
     "skills": {
       "source": {
-        "source": "git",
-        "url": "https://github.com/DIvkov575/dima-skills.git"
+        "source": "directory",
+        "path": "/Users/divkov/workplace/skills"
+      }
+    },
+    "mymemories": {
+      "source": {
+        "source": "github",
+        "repo": "DIvkov575/mymemories-tool"
+      }
+    },
+    "dreams": {
+      "source": {
+        "source": "github",
+        "repo": "DIvkov575/dreams"
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "low",
   "advisorModel": "sonnet",
   "tui": "default",
   "prefersReducedMotion": true,
@@ -335,18 +353,8 @@
         "-y",
         "@upstash/context7-mcp@latest"
       ]
-    },
-    "contextplus": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "contextplus"
-      ]
     }
   },
   "chrome": true,
-  "teammate_mode": "tmux",
-  "_meshclaw_managed": [
-    "permissions.deny"
-  ]
+  "teammate_mode": "tmux"
 }
