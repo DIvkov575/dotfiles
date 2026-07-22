@@ -303,6 +303,7 @@
     "hld2@skills": true,
     "swear-filter@skills": true,
     "deep-research-efficient@skills": true,
+    "research@skills": true,
     "mymemories@mymemories": true,
     "dreams@dreams": true
   },
